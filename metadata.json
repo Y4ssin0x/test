@@ -1,0 +1,6 @@
+{
+  "name": "Real Madrid C.F. — Official Fan Experience",
+  "description": "Official Santiago Bernabéu fan experience platform featuring tactical match reports, live match telemetry, interactive squad radar analytics, virtual stadium tours, and the 15-time European champion trophy cabinet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
