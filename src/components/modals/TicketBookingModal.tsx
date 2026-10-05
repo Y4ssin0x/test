@@ -44,7 +44,7 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
       particleCount: 60,
       spread: 80,
       origin: { y: 0.5 },
-      colors: ['#f2ca50', '#ffffff', '#3b82f6'],
+      colors: ['#f2ca50', '#ffffff', '#eab308', '#d4af37'],
     });
   };
 
@@ -54,12 +54,12 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0b1124] border border-[#f2ca50]/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-fade-in">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white border border-amber-300 rounded-2xl p-6 sm:p-8 shadow-2xl text-slate-900">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-[#f2ca50] hover:text-black flex items-center justify-center text-slate-300 transition-colors cursor-pointer"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-amber-400 hover:text-slate-950 flex items-center justify-center text-slate-700 transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">close</span>
         </button>
@@ -67,22 +67,22 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
         {!bookingConfirmed ? (
           <>
             {/* Header */}
-            <div className="mb-6 border-b border-white/10 pb-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider mb-2 border border-blue-500/30">
-                <span className="material-symbols-outlined text-[14px]">confirmation_number</span>
+            <div className="mb-6 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider mb-2 border border-amber-300">
+                <span className="material-symbols-outlined text-[14px] text-amber-600">confirmation_number</span>
                 <span>UEFA CHAMPIONS LEAGUE · ROUND OF 16</span>
               </div>
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
-                REAL MADRID <span className="text-slate-400 font-sans text-xl">vs</span> BORUSSIA DORTMUND
+              <h3 className="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+                REAL MADRID <span className="text-slate-400 font-sans text-xl">vs</span> AS ROMA
               </h3>
-              <p className="text-xs text-slate-300 mt-1">
+              <p className="text-xs text-slate-600 mt-1">
                 Tuesday, 21:00 CET • Santiago Bernabéu Stadium • 48h Priority Access Window
               </p>
             </div>
 
             {/* Step 1: Choose Sector */}
             <div className="space-y-4 mb-6">
-              <label className="text-xs font-extrabold uppercase tracking-wider text-slate-300 block">
+              <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block">
                 1. Select Stadium Sector
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -94,18 +94,18 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
                       onClick={() => setSelectedSector(sec)}
                       className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                         isSelected
-                          ? 'bg-[#182246] border-[#f2ca50] ring-1 ring-[#f2ca50]/40'
-                          : 'bg-white/5 border-white/10 hover:border-white/20'
+                          ? 'bg-amber-50 border-amber-400 ring-1 ring-amber-400 shadow-sm'
+                          : 'bg-slate-50 border-slate-200 hover:border-amber-300'
                       }`}
                     >
                       <div className="flex justify-between items-start">
-                        <span className="text-xs font-bold text-white">{sec.name}</span>
-                        <span className="font-stat text-sm font-extrabold text-[#f2ca50]">
+                        <span className="text-xs font-bold text-slate-900">{sec.name}</span>
+                        <span className="font-stat text-sm font-extrabold text-amber-600">
                           €{sec.price}
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-1">{sec.view}</p>
-                      <span className="text-[10px] text-emerald-400 font-semibold mt-1 block">
+                      <p className="text-[11px] text-slate-500 mt-1">{sec.view}</p>
+                      <span className="text-[10px] text-emerald-700 font-semibold mt-1 block">
                         ● {sec.available} seats remaining
                       </span>
                     </div>
@@ -115,9 +115,9 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
             </div>
 
             {/* Step 2: Quantity & Member Discount */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-black/40 border border-white/10 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200 mb-6">
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-300 block mb-2">
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block mb-2">
                   2. Number of Tickets
                 </label>
                 <div className="flex items-center gap-3">
@@ -127,8 +127,8 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
                       onClick={() => setTicketCount(num)}
                       className={`w-9 h-9 rounded-lg font-bold text-xs transition-colors cursor-pointer ${
                         ticketCount === num
-                          ? 'bg-[#f2ca50] text-[#241a00]'
-                          : 'bg-white/10 text-white hover:bg-white/20'
+                          ? 'bg-amber-400 text-slate-950 font-extrabold shadow-sm'
+                          : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
                       {num}
@@ -138,22 +138,22 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
               </div>
 
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-300 block mb-2">
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block mb-2">
                   Madridista Member Perk
                 </label>
-                <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={isMadridista}
                     onChange={(e) => setIsMadridista(e.target.checked)}
-                    className="rounded text-[#f2ca50] focus:ring-[#f2ca50]"
+                    className="rounded text-amber-500 focus:ring-amber-400"
                   />
                   <span>Apply 15% Madridista Pass Discount</span>
                 </label>
                 {!isMadridista && (
                   <button
                     onClick={onOpenMembership}
-                    className="text-[11px] text-[#f2ca50] hover:underline mt-1 block cursor-pointer"
+                    className="text-[11px] text-amber-700 hover:underline mt-1 block cursor-pointer font-medium"
                   >
                     Get Madridista Pass to unlock priority discounts →
                   </button>
@@ -162,14 +162,14 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
             </div>
 
             {/* Total Bar & Confirm */}
-            <div className="p-4 rounded-xl bg-[#111832] border border-[#f2ca50]/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="p-4 rounded-xl bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border border-amber-300 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
               <div>
-                <span className="text-xs text-slate-400 block">Total Due ({ticketCount} {ticketCount > 1 ? 'tickets' : 'ticket'})</span>
-                <span className="font-stat text-3xl font-extrabold text-[#f2ca50]">
+                <span className="text-xs text-slate-500 block">Total Due ({ticketCount} {ticketCount > 1 ? 'tickets' : 'ticket'})</span>
+                <span className="font-stat text-3xl font-extrabold text-amber-600">
                   €{totalPrice}
                 </span>
                 {isMadridista && (
-                  <span className="text-[11px] text-emerald-400 ml-2 font-semibold">
+                  <span className="text-[11px] text-emerald-700 ml-2 font-semibold">
                     (Saved €{(selectedSector.price - unitPrice) * ticketCount} with Madridista Pass)
                   </span>
                 )}
@@ -177,7 +177,7 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
 
               <button
                 onClick={handleConfirm}
-                className="btn-gold-glow w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#f2ca50] to-[#d4af37] text-[#241a00] font-bold text-xs uppercase tracking-wider cursor-pointer shadow-lg"
+                className="btn-gold-glow w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-slate-950 font-bold text-xs uppercase tracking-wider cursor-pointer shadow-md"
               >
                 Instant Priority Reservation
               </button>
@@ -186,37 +186,37 @@ export const TicketBookingModal: React.FC<TicketBookingModalProps> = ({
         ) : (
           /* Confirmation Pass Screen */
           <div className="text-center py-6 space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-3xl border border-emerald-500/40">
+            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl border border-emerald-300 shadow-sm">
               <span className="material-symbols-outlined text-[36px]">check_circle</span>
             </div>
-            <h3 className="font-display font-extrabold text-2xl text-white uppercase tracking-tight">
+            <h3 className="font-display font-extrabold text-2xl text-slate-900 uppercase tracking-tight">
               Tickets Reserved Successfully!
             </h3>
-            <p className="text-xs text-slate-300 max-w-md mx-auto">
+            <p className="text-xs text-slate-600 max-w-md mx-auto">
               Your matchday passes have been generated and synced with your Madridista Wallet. A confirmation has also been dispatched to your email.
             </p>
 
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#111832] via-[#182246] to-[#111832] border border-[#f2ca50]/40 max-w-md mx-auto text-left shadow-xl space-y-2">
-              <div className="flex justify-between items-center text-xs text-[#f2ca50] font-bold">
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-50 via-white to-amber-50 border border-amber-300 max-w-md mx-auto text-left shadow-md space-y-2">
+              <div className="flex justify-between items-center text-xs text-amber-800 font-bold">
                 <span>ESTADIO SANTIAGO BERNABÉU</span>
                 <span>ENTRY GATE: 42-B</span>
               </div>
-              <div className="font-display font-black text-lg text-white">
-                REAL MADRID vs BORUSSIA DORTMUND
+              <div className="font-display font-black text-lg text-slate-900">
+                REAL MADRID vs AS ROMA
               </div>
-              <div className="text-xs text-slate-300">
+              <div className="text-xs text-slate-600">
                 Sector: {selectedSector.name} • {ticketCount} {ticketCount > 1 ? 'Seats' : 'Seat'}
               </div>
-              <div className="flex justify-between text-xs text-slate-400 pt-2 border-t border-white/10 font-mono">
+              <div className="flex justify-between text-xs text-slate-500 pt-2 border-t border-slate-200 font-mono">
                 <span>ORDER: #RM-UCL-2025-8842</span>
-                <span className="text-white font-bold">PAID: €{totalPrice}</span>
+                <span className="text-slate-900 font-bold">PAID: €{totalPrice}</span>
               </div>
             </div>
 
             <div className="pt-4 flex justify-center gap-3">
               <button
                 onClick={handleReset}
-                className="px-6 py-2.5 rounded-xl bg-[#f2ca50] text-[#241a00] font-bold text-xs uppercase tracking-wider cursor-pointer hover:bg-[#d4af37]"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-slate-950 font-bold text-xs uppercase tracking-wider cursor-pointer shadow-sm"
               >
                 Done
               </button>

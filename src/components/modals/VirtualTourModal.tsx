@@ -72,27 +72,27 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({ isOpen, onCl
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0b1124] border border-[#f2ca50]/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-fade-in">
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white border border-amber-300 rounded-2xl p-6 sm:p-8 shadow-2xl text-slate-900">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-[#f2ca50] hover:text-black flex items-center justify-center text-slate-300 transition-colors cursor-pointer"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-amber-400 hover:text-slate-950 flex items-center justify-center text-slate-700 transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">close</span>
         </button>
 
         {/* Header */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="px-2.5 py-0.5 rounded bg-[#f2ca50]/20 text-[#f2ca50] font-bold text-xs uppercase tracking-wider border border-[#f2ca50]/30">
+          <span className="px-2.5 py-0.5 rounded bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider border border-amber-300">
             BERNABÉU 360° SPATIAL EXPLORER
           </span>
-          <span className="text-xs text-slate-400">ARCHITECTURAL BLUEPRINT</span>
+          <span className="text-xs text-slate-500 font-medium">ARCHITECTURAL BLUEPRINT</span>
         </div>
-        <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+        <h3 className="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
           Under the Retractable Roof: Inside the World’s Modern Cathedral
         </h3>
-        <p className="text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+        <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
           Select an engineering node below to inspect how the Santiago Bernabéu was re-engineered into the world’s most advanced multi-functional entertainment colosseum.
         </p>
 
@@ -104,16 +104,16 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({ isOpen, onCl
               <button
                 key={feat.id}
                 onClick={() => setSelectedFeature(feat)}
-                className={`p-3 rounded-xl text-left transition-all border cursor-pointer ${
+                className={`p-3.5 rounded-xl text-left transition-all border cursor-pointer ${
                   isSelected
-                    ? 'bg-[#182246] border-[#f2ca50] ring-1 ring-[#f2ca50]/40'
-                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                    ? 'bg-amber-50 border-amber-400 ring-1 ring-amber-400 shadow-sm'
+                    : 'bg-slate-50 border-slate-200 hover:border-amber-300'
                 }`}
               >
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#f2ca50]">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-amber-700">
                   {feat.tag}
                 </div>
-                <div className="text-xs font-bold text-white mt-1 line-clamp-2">
+                <div className="text-xs font-bold text-slate-900 mt-1 line-clamp-2">
                   {feat.name}
                 </div>
               </button>
@@ -122,29 +122,29 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({ isOpen, onCl
         </div>
 
         {/* Active Node Detail Card */}
-        <div className="p-6 rounded-2xl bg-gradient-to-br from-[#111832] to-[#182246] border border-white/10 relative overflow-hidden">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4 mb-4">
+        <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50/60 via-white to-amber-50/30 border border-amber-200 relative overflow-hidden shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200/80 pb-4 mb-4">
             <div>
-              <span className="text-xs text-[#f2ca50] font-bold uppercase tracking-widest block">
+              <span className="text-xs text-amber-700 font-bold uppercase tracking-widest block">
                 {selectedFeature.depth}
               </span>
-              <h4 className="font-display font-extrabold text-xl text-white">
+              <h4 className="font-display font-extrabold text-xl text-slate-900">
                 {selectedFeature.name}
               </h4>
             </div>
-            <span className="px-3 py-1 rounded bg-[#f2ca50]/15 text-[#f2ca50] font-bold text-xs uppercase tracking-wider self-start sm:self-auto border border-[#f2ca50]/30">
+            <span className="px-3 py-1 rounded bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider self-start sm:self-auto border border-amber-300">
               OPERATIONAL STATUS: ACTIVE
             </span>
           </div>
 
-          <p className="text-slate-300 text-sm leading-relaxed mb-6">
+          <p className="text-slate-600 text-sm leading-relaxed mb-6">
             {selectedFeature.desc}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {selectedFeature.specs.map((spec, i) => (
-              <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-black/30 text-xs text-slate-200 border border-white/5">
-                <span className="material-symbols-outlined text-[#f2ca50] text-[18px]">verified</span>
+              <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white text-xs text-slate-800 border border-amber-200/60 shadow-2xs">
+                <span className="material-symbols-outlined text-amber-600 text-[18px]">verified</span>
                 <span>{spec}</span>
               </div>
             ))}
@@ -153,14 +153,14 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({ isOpen, onCl
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => alert('Launching immersive 3D Bernabéu Walkthrough!')}
-              className="btn-gold-glow px-6 py-3 rounded-xl bg-gradient-to-r from-[#f2ca50] to-[#d4af37] text-[#241a00] font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer shadow-md"
+              className="btn-gold-glow px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer shadow-md"
             >
               <span className="material-symbols-outlined text-[18px]">view_in_ar</span>
               <span>Launch 360° Interactive Viewport</span>
             </button>
             <button
               onClick={onClose}
-              className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+              className="px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
             >
               Close Explorer
             </button>

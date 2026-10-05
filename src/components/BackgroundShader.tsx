@@ -56,27 +56,30 @@ export const BackgroundShader: React.FC = () => {
         vec2 uv = gl_FragCoord.xy / u_resolution.xy;
         vec2 p = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
 
-        float t = u_time * 0.15;
+        float t = u_time * 0.12;
         vec2 mouseNorm = (u_mouse.xy / u_resolution.xy) - 0.5;
-        p += mouseNorm * 0.2;
+        p += mouseNorm * 0.15;
 
-        float q = fbm(p + vec2(t * 0.4, -t * 0.3));
-        float r = fbm(p + 1.5 * vec2(q) + vec2(1.7, 9.2) + 0.15 * t);
-        float f = fbm(p + 2.0 * vec2(r) + vec2(8.3, 2.8) + 0.12 * t);
+        float q = fbm(p + vec2(t * 0.35, -t * 0.25));
+        float r = fbm(p + 1.5 * vec2(q) + vec2(1.7, 9.2) + 0.12 * t);
+        float f = fbm(p + 2.0 * vec2(r) + vec2(8.3, 2.8) + 0.10 * t);
 
-        vec3 colDeepNavy = vec3(0.039, 0.055, 0.098);
-        vec3 colRoyalBlue = vec3(0.075, 0.11, 0.21);
-        vec3 colGold = vec3(0.83, 0.69, 0.22);
-        vec3 colCyanBeam = vec3(0.12, 0.35, 0.55);
+        // Los Blancos Royal White & Gold palette
+        vec3 colPureWhite = vec3(0.99, 0.99, 1.0);
+        vec3 colPearlSilk = vec3(0.97, 0.96, 0.94);
+        vec3 colWarmCream = vec3(0.98, 0.94, 0.86);
+        vec3 colRoyalGold = vec3(0.92, 0.75, 0.26);
 
-        vec3 color = mix(colDeepNavy, colRoyalBlue, clamp(f * 1.4, 0.0, 1.0));
-        color = mix(color, colCyanBeam, clamp(length(q) * 0.35, 0.0, 1.0));
+        vec3 color = mix(colPureWhite, colPearlSilk, clamp(f * 1.2, 0.0, 1.0));
+        color = mix(color, colWarmCream, clamp(length(q) * 0.45, 0.0, 1.0));
         
-        float goldBeam = pow(smoothstep(0.45, 0.85, r * f), 2.5);
-        color += colGold * goldBeam * 0.45;
+        // Fluid golden sunlight and champagne shimmer
+        float goldBeam = pow(smoothstep(0.40, 0.80, r * f), 2.2);
+        color = mix(color, colRoyalGold, goldBeam * 0.25);
 
-        float vig = 1.0 - smoothstep(0.4, 1.4, length(uv - 0.5) * 1.3);
-        color *= vig;
+        // Soft vignette
+        float vig = 1.0 - smoothstep(0.5, 1.5, length(uv - 0.5) * 0.9);
+        color = mix(colPureWhite, color, vig);
 
         gl_FragColor = vec4(color, 1.0);
       }
@@ -167,7 +170,7 @@ export const BackgroundShader: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40">
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-70">
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );

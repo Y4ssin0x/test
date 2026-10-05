@@ -57,7 +57,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#070B19] text-[#e2e6fa] selection:bg-[#f2ca50] selection:text-black">
+    <div className="relative min-h-screen flex flex-col bg-[#FAFAFA] text-[#0F172A] selection:bg-[#f2ca50] selection:text-black">
       {/* Procedural WebGL Background Shader Canvas */}
       <BackgroundShader />
 
